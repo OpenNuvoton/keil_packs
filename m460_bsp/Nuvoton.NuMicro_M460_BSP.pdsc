@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
-  <vendor>Nuvoton</vendor>
-  <url>https://github.com/OpenNuvoton/keil_packs/m460_bsp/</url>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.6.0">
   <name>NuMicro_M460_BSP</name>
-  <description>Nuvoton ARM Cortex-M NuMicro Family BSP Support</description>
+  <vendor>Nuvoton</vendor>
+  <description>>Board support pack for Nuvoton M460 based development boards.</description>
+  <url>https://github.com/OpenNuvoton/keil_packs/raw/master/m460_bsp/</url>
 
   <releases>
     <release version="1.0.0" date="2022-03-07">
@@ -14,54 +14,37 @@
   <keywords>
     <!-- keywords for indexing -->
     <keyword>Nuvoton</keyword>
-    <keyword>Device Support</keyword>
-    <keyword>Device Family Package Nuvoton</keyword>
-    <keyword>NuMicro</keyword>
+    <keyword>Board Support Pack</keyword>
+    <keyword>M467HJHAE</keyword>
+    <keyword>NuMicro_M460</keyword>
   </keywords>
 
   <requirements>
 	<packages>
-		<package vendor="Nuvoton" name="NuMicro_DFP" version="1.3.15"/>
+		<package vendor="Nuvoton" name="NuMicro_DFP" version="1.3.14"/>
 	</packages>
   </requirements>
-
-  <boards>
-    <board vendor="Nuvoton" name="NuTiny-SDK-M467" revision="V1.0" salesContact="sales@nuvoton.com">
-      <description>Nuvoton NuTiny SDK M467 Board Support and Examples</description>
-      <mountedDevice    deviceIndex="0" Dvendor="Nuvoton:18" Dname="M467HJHAE"/>
-      <compatibleDevice deviceIndex="0" Dvendor="Nuvoton:18" DsubFamily="M467"/>
-    	<feature type="ODbg"      n="1"                name="On-board Nu-Link2-ME"/>
-    	<feature type="PWR"       n="5"                name="USB Powered"/>
-    	<feature type="PWR"       n="3.3" m="5"        name="POWER Connector for external supply"/>
-    	<feature type="DIO"       n="180"              name="4 extended connectors to all chip pins"/>
-    	<feature type="LED"       n="1"                name="User LED"/>
-    	<feature type="Button"    n="1"                name="Reset Button"/>
-    	<feature type="USB"       n="1"                name="USB OTG Host/Device Connector"/>
-      <debugInterface adapter="Nu-Link" connector="Mini-USB"/>
-    </board>
-  </boards>
 
   <conditions>
     <condition id="Compiler ARM">
       <!-- conditions selecting ARM Compiler -->
       <require Tcompiler="ARMCC"/>
     </condition>
-
-	<condition id="M467HJHAE">
+	
+	<condition id="M4NuMicro M460 Device">
       <description>Nuvoton M460 Devices</description>
       <require Dvendor="Nuvoton:18" Dname="M467*"/>
     </condition>
 	
-	<condition id="M4NuMicro M460 Device">
-      <description>Nuvoton M460 Devices</description>
-      <require condition="M467HJHAE"/>
+	<condition id="NuMaker-PFM-M467HJ VIO">
+      <description>Virtual I/O driver</description>
+      <require condition="M4NuMicro M460 Device"/>
       <require Cclass="Device" Cgroup="StdDriver" Csub="GPIO"/>
       <require Cclass="Device" Cgroup="Startup"/>
     </condition>
   </conditions>
 	
   <components>
-    <!-- *************************  Startup file  ***************************** -->
     <component Cclass="Device" Cgroup="Startup" Cversion="3.00.001" condition="M4NuMicro M460 Device">
       <!-- Cversion is necessary -->
       <description>System Startup for Nuvoton M460 Series</description>
@@ -78,6 +61,17 @@
         <file category="source"  name="Library/Device/Nuvoton/m460/Source/system_m460.c" attr="config" version="3.00.001"/>
         <!-- retarget files -->
         <file category="sourceC" name="Library/StdDriver/src/retarget.c" attr="config" version="3.00.001"/>
+      </files>
+    </component>
+    <!-- VIO driver -->
+    <component Cclass="CMSIS Driver" Cgroup="VIO" Csub="Board" Cvariant="NuMaker-PFM-M467HJ" Cversion="1.0.1" Capiversion="0.1.0" condition="NuMaker-PFM-M467HJ VIO">
+      <description>Virtual I/O implementation for Nuvoton NuMaker-PFM-M467HJ Board</description>
+      <RTE_Components_h>
+            #define RTE_VIO_BOARD
+            #define RTE_VIO_NUMAKER_PFM_M467HJ
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Library/Device/Platform/vio_NuMaker-PFM-M467HJ.c"/>
       </files>
     </component>
     <component Cclass="Device" Cgroup="StdDriver" Csub="ACMP" Cversion="3.00.001" condition="M4NuMicro M460 Device">
@@ -441,26 +435,44 @@
     </component>
   </components>
 
+  <boards>
+    <board vendor="Nuvoton" name="NuMaker-PFM-M467HJ" revision="V1.0" salesContact="sales@nuvoton.com">
+      <description>Nuvoton NuTiny SDK M467 Board Support and Examples</description>
+      <mountedDevice    deviceIndex="0" Dvendor="Nuvoton:18" Dname="M467HJHAE"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Nuvoton:18" DsubFamily="M467"/>
+    	<feature type="ODbg"      n="1"                name="On-board Nu-Link2-ME"/>
+    	<feature type="PWR"       n="5"                name="USB Powered"/>
+    	<feature type="PWR"       n="3.3" m="5"        name="POWER Connector for external supply"/>
+    	<feature type="DIO"       n="180"              name="4 extended connectors to all chip pins"/>
+    	<feature type="LED"       n="1"                name="User LED"/>
+    	<feature type="Button"    n="1"                name="Reset Button"/>
+    	<feature type="USB"       n="1"                name="USB OTG Host/Device Connector"/>
+      <debugInterface adapter="Nu-Link" connector="Mini-USB"/>
+    </board>
+  </boards>
+  
   <examples>  
 	<example name="Blinky" doc="README.md" folder="SampleCode/Blinky" version="3.00.001">
 	  <description>PWM sample code</description>
-	  <board name="NuTiny-SDK-M467" vendor="Nuvoton"/>
+	  <board name="NuMaker-PFM-M467HJ" vendor="Nuvoton"/>
 	  <project>
 		<environment name="uv" load="Blinky.uvprojx"/>
 	  </project>
 	  <attributes>
 		<component Cclass="Device" Cgroup="Startup"/>
+		<component Cclass="CMSIS Driver" Cgroup="VIO"/>
 		<category>Getting Started</category>
       </attributes>
 	</example>
-    <example name="Template" doc="README.md" folder="SampleCode/Template" version="3.00.001">
+	<example name="Template" doc="README.md" folder="SampleCode/Template" version="3.00.001">
 	  <description>Template sample code</description>
-	  <board name="NuTiny-SDK-M467" vendor="Nuvoton"/>
+	  <board name="NuMaker-PFM-M467HJ" vendor="Nuvoton"/>
 	  <project>
 		<environment name="uv" load="Keil/Template.uvprojx"/>
 	  </project>
 	  <attributes>
 		<component Cclass="Device" Cgroup="StdDriver"/>
+	    <component Cclass="CMSIS Driver" Cgroup="VIO"/>
 		<category>Getting Started</category>
       </attributes>
 	</example>
