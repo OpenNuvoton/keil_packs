@@ -6,7 +6,7 @@
   <url>https://github.com/OpenNuvoton/keil_packs/raw/master/m460_bsp/</url>
 
   <releases>
-    <release version="1.0.0" date="2022-03-07">
+    <release version="1.0.0" date="2022-04-18">
       First Release version of M467 BSP Pack.
 	</release>
   </releases>
@@ -21,21 +21,16 @@
 
   <requirements>
 	<packages>
-		<package vendor="Nuvoton" name="NuMicro_DFP" version="1.3.14"/>
+		<package vendor="Nuvoton" name="NuMicro_DFP" version="1.3.15"/>
 	</packages>
   </requirements>
 
   <conditions>
-    <condition id="Compiler ARM">
-      <!-- conditions selecting ARM Compiler -->
-      <require Tcompiler="ARMCC"/>
-    </condition>
-	
 	<condition id="M4NuMicro M460 Device">
       <description>Nuvoton M460 Devices</description>
       <require Dvendor="Nuvoton:18" Dname="M467*"/>
     </condition>
-	
+
 	<condition id="NuMaker-PFM-M467HJ VIO">
       <description>Virtual I/O driver</description>
       <require condition="M4NuMicro M460 Device"/>
@@ -43,7 +38,7 @@
       <require Cclass="Device" Cgroup="Startup"/>
     </condition>
   </conditions>
-	
+
   <components>
     <component Cclass="Device" Cgroup="Startup" Cversion="3.00.001" condition="M4NuMicro M460 Device">
       <!-- Cversion is necessary -->
@@ -57,10 +52,8 @@
         <file category="include" name="Library/Device/Nuvoton/m460/Include/"/>
         <file category="header"  name="Library/Device/Nuvoton/m460/Include/m460.h"/>
         <!-- startup/system files -->
-        <file category="sourceAsm"  name="Library/Device/Nuvoton/m460/Source/ARM/startup_m460.s" attr="config" version="3.00.001" condition="Compiler ARM"/>
+        <file category="sourceAsm"  name="Library/Device/Nuvoton/m460/Source/ARM/startup_m460.s" attr="config" version="3.00.001"/>
         <file category="source"  name="Library/Device/Nuvoton/m460/Source/system_m460.c" attr="config" version="3.00.001"/>
-        <!-- retarget files -->
-        <file category="sourceC" name="Library/StdDriver/src/retarget.c" attr="config" version="3.00.001"/>
       </files>
     </component>
     <!-- VIO driver -->
@@ -450,31 +443,20 @@
       <debugInterface adapter="Nu-Link" connector="Mini-USB"/>
     </board>
   </boards>
-  
-  <examples>  
-	<example name="Blinky" doc="README.md" folder="SampleCode/Blinky" version="3.00.001">
-	  <description>PWM sample code</description>
+  <examples>
+	<example name="Blinky" doc="readme.txt" folder="SampleCode/Blinky" version="3.00.001">
+	  <description>CLK_ClockDetector sample code</description>
 	  <board name="NuMaker-PFM-M467HJ" vendor="Nuvoton"/>
 	  <project>
-		<environment name="uv" load="Blinky.uvprojx"/>
+	    <environment name="uv" load="Blinky.uvprojx"/>
 	  </project>
 	  <attributes>
-		<component Cclass="Device" Cgroup="Startup"/>
-		<component Cclass="CMSIS Driver" Cgroup="VIO"/>
-		<category>Getting Started</category>
-      </attributes>
-	</example>
-	<example name="Template" doc="README.md" folder="SampleCode/Template" version="3.00.001">
-	  <description>Template sample code</description>
-	  <board name="NuMaker-PFM-M467HJ" vendor="Nuvoton"/>
-	  <project>
-		<environment name="uv" load="Keil/Template.uvprojx"/>
-	  </project>
-	  <attributes>
-		<component Cclass="Device" Cgroup="StdDriver"/>
+	    <component Cclass="Device" Cgroup="Startup"/>
+	    <component Cclass="Device" Cgroup="StdDriver"/>
+	    <component Cclass="CMSIS" Cgroup="CORE"/>
 	    <component Cclass="CMSIS Driver" Cgroup="VIO"/>
-		<category>Getting Started</category>
-      </attributes>
+	    <category>Getting Started</category>
+	  </attributes>
 	</example>
   </examples>
 </package>
