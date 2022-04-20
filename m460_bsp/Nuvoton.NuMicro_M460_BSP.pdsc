@@ -6,7 +6,10 @@
   <url>https://github.com/OpenNuvoton/keil_packs/raw/master/m460_bsp/</url>
 
   <releases>
-    <release version="1.0.0" date="2022-04-18">
+    <release version="1.0.1" date="2022-04-20">
+      Remove retarget.c from Startup group.
+	</release>
+	<release version="1.0.0" date="2022-03-07">
       First Release version of M467 BSP Pack.
 	</release>
   </releases>
@@ -19,18 +22,11 @@
     <keyword>NuMicro_M460</keyword>
   </keywords>
 
-  <requirements>
-	<packages>
-		<package vendor="Nuvoton" name="NuMicro_DFP" version="1.3.15"/>
-	</packages>
-  </requirements>
-
   <conditions>
 	<condition id="M4NuMicro M460 Device">
       <description>Nuvoton M460 Devices</description>
-      <require Dvendor="Nuvoton:18" Dname="M467*"/>
+      <require Dvendor="Nuvoton:18" Dname="M46*"/>
     </condition>
-
 	<condition id="NuMaker-PFM-M467HJ VIO">
       <description>Virtual I/O driver</description>
       <require condition="M4NuMicro M460 Device"/>
@@ -444,8 +440,8 @@
     </board>
   </boards>
   <examples>
-	<example name="Blinky" doc="readme.txt" folder="SampleCode/Blinky" version="3.00.001">
-	  <description>CLK_ClockDetector sample code</description>
+	<example name="Blinky" doc="readme.txt" folder="Projects/Blinky" version="3.00.001">
+	  <description>Blinky sample code</description>
 	  <board name="NuMaker-PFM-M467HJ" vendor="Nuvoton"/>
 	  <project>
 	    <environment name="uv" load="Blinky.uvprojx"/>
