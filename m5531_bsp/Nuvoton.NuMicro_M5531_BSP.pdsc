@@ -8,7 +8,7 @@
   <!-- Strongly recommended - pack description with Overview.md file: -->
   <description overview="README.md">Board Support Pack for M5531 Series</description>
   <!-- Optional - pack download URL (if publicly available): -->
-  <url>https://github.com/OpenNuvoton/keil_packs/raw/master/M5531_bsp/</url>
+  <url>https://github.com/OpenNuvoton/keil_packs/raw/master/m5531_bsp/</url>
   <!-- Strongly recommended - support contact information: -->
   <supportContact></supportContact>
  
