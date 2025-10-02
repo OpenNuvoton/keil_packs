@@ -8,7 +8,7 @@
   <!-- Strongly recommended - pack description with Overview.md file: -->
   <description overview="README.md">Board Support Pack for M5531 Series</description>
   <!-- Optional - pack download URL (if publicly available): -->
-  <url>https://github.com/OpenNuvoton/keil_packs/raw/master/M5531_bsp/output/</url>
+  <url>https://github.com/OpenNuvoton/keil_packs/raw/master/M5531_bsp/</url>
   <!-- Strongly recommended - support contact information: -->
   <supportContact></supportContact>
  
@@ -48,14 +48,14 @@
       <!-- Must have - on-board device information: -->
       <mountedDevice    deviceIndex="0" Dvendor="Nuvoton:18" Dname="M5531H2LJAE"/>
       <!-- Strongly recommended - on-board device compatibility information: -->
-      <compatibleDevice deviceIndex="0" Dvendor="Nuvoton:18" Dname="M5531*"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Nuvoton:18" Dname="M5531"/>
       <!-- Strongly recommended - board features: -->
       <feature type="ODbg"      n="1"                name="On-board Nu-Link2-Me"/>
       <feature type="PWR"       n="5"                name="USB Powered"/>
       <feature type="PWR"       n="3.3" m="5"        name="POWER Connector for external supply"/>
-      <feature type="DIO"       n="180"              name="4 extended connectors to all chip pins"/>
+      <feature type="DIO"       n="176"              name="4 extended connectors to all chip pins"/>
       <feature type="LED"       n="3"                name="User LED"/>
-      <feature type="Button"    n="2"                name="Reset Button"/>
+      <feature type="Button"    n="2"                name="User Button"/>
       <feature type="USB"       n="2"                name="USB OTG Host/Device Connector"/>
       <!-- Strongly recommended - on-board debug probe information (if applicable): -->
       <debugInterface adapter="Nu-Link" debugLink="swd" connector="USB-C"/>
@@ -67,7 +67,7 @@
     <!-- Must have - condition related to the device family: -->
     <condition id="NuMicro M5531 Device">
       <description>NuMicro M5531 Devcies</description>
-      <require Dvendor="Nuvoton:18" Dfamily="NuMicro M55 Family" DsubFamily="M5531" Dname="M5531*"/>
+      <require Dvendor="Nuvoton:18" Dfamily="NuMicro M55 Family" DsubFamily="M5531"/>
     </condition>
 
     <condition id="Toolchain ARMCC">
@@ -391,9 +391,9 @@
         <!-- startup/system files -->
         <file category="source"  name="Library/Device/Nuvoton/M5531/Source/startup_M5531.c" attr="config" version="3.01.002"/>
         <file category="source"  name="Library/Device/Nuvoton/M5531/Source/system_M5531.c" attr="config" version="3.01.002"/>
-        <file category="linkerScript" name="Library/Device/Nuvoton/M5531/Source/ARM/M5531.scatter" version="3.01.002" attr="config" condition="Toolchain ARMCC"/>
-        <file category="linkerScript" name="Library/Device/Nuvoton/M5531/Source/GCC/M5531.ld" version="3.01.002" attr="config" condition="Toolchain GCC"/>
-        <file category="linkerScript" name="Library/Device/Nuvoton/M5531/Source/IAR/M5531.icf" version="3.01.002" attr="config" condition="Toolchain IAR"/>
+        <file category="linkerScript" name="Library/Device/Nuvoton/M5531/Source/ARM/M5531.scatter" attr="config" version="3.01.002" condition="Toolchain ARMCC"/>
+        <file category="linkerScript" name="Library/Device/Nuvoton/M5531/Source/GCC/M5531.ld" attr="config" version="3.01.002" condition="Toolchain GCC"/>
+        <file category="linkerScript" name="Library/Device/Nuvoton/M5531/Source/IAR/M5531.icf" attr="config" version="3.01.002" condition="Toolchain IAR"/>
       </files>
     </component>
 
@@ -664,19 +664,19 @@
       </files>
     </component>
 
-    <component Cclass="Device" Cgroup="StdDriver" Csub="LPTMR_PWM" Cversion="3.01.002" condition="NuMicro M5531 Device">
-    <description>LPTMR_PWM driver for Nuvoton M5531 Series</description>
-      <files>
-      <file category="header"  name="Library/StdDriver/inc/lptmr_pwm.h"/>
-      <file category="sourceC" name="Library/StdDriver/src/lptmr_pwm.c"/>
-      </files>
-    </component>
-
     <component Cclass="Device" Cgroup="StdDriver" Csub="LPTMR" Cversion="3.01.002" condition="NuMicro M5531 Device">
     <description>LPTMR driver for Nuvoton M5531 Series</description>
       <files>
       <file category="header"  name="Library/StdDriver/inc/lptmr.h"/>
       <file category="sourceC" name="Library/StdDriver/src/lptmr.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdDriver" Csub="LPTMR_PWM" Cversion="3.01.002" condition="NuMicro M5531 Device">
+    <description>LPTMR_PWM driver for Nuvoton M5531 Series</description>
+      <files>
+      <file category="header"  name="Library/StdDriver/inc/lptmr_pwm.h"/>
+      <file category="sourceC" name="Library/StdDriver/src/lptmr_pwm.c"/>
       </files>
     </component>
 
