@@ -9,6 +9,8 @@
   <description overview="README.md">Board Support Pack for M55M1 Series</description>
   <!-- Optional - pack download URL (if publicly available): -->
   <url>https://github.com/OpenNuvoton/keil_packs/raw/master/m55m1_bsp/</url>
+  <!-- Optional - Git repo URL (if applicable): -->
+  <repository type="git">https://github.com/OpenNuvoton/M55M1BSP.git</repository>
   <!-- Strongly recommended - support contact information: -->
   <supportContact></supportContact>
  
@@ -35,7 +37,7 @@
   <requirements>
     <!-- Strongly recommended - requirement to DFP (or other packs): -->
     <packages>
-      <package vendor="Nuvoton" name="NuMicroM55_DFP"/>
+      <package vendor="Nuvoton" name="NuMicroM55_DFP" version="1.0.2"/>
     </packages>
   </requirements>
 
@@ -48,7 +50,7 @@
       <!-- Must have - on-board device information: -->
       <mountedDevice    deviceIndex="0" Dvendor="Nuvoton:18" Dname="M55M1H2LJAE"/>
       <!-- Strongly recommended - on-board device compatibility information: -->
-      <compatibleDevice deviceIndex="0" Dvendor="Nuvoton:18" Dname="M55M1"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Nuvoton:18" Dname="M55M1*"/>
       <!-- Strongly recommended - board features: -->
       <feature type="ODbg"      n="1"                name="On-board Nu-Link2-Me"/>
       <feature type="PWR"       n="5"                name="USB Powered"/>
@@ -67,7 +69,7 @@
     <!-- Must have - condition related to the device family: -->
     <condition id="NuMicro M55M1 Device">
       <description>NuMicro M55M1 Devcies</description>
-      <require Dvendor="Nuvoton:18" Dfamily="NuMicro M55 Family" DsubFamily="M55M1"/>
+      <require Dvendor="Nuvoton:18" Dfamily="NuMicro M55 Family" DsubFamily="M55M1" Dname="M55M1*"/>
     </condition>
 
     <condition id="Toolchain ARMCC">
