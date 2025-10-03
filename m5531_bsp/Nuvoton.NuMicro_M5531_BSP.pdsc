@@ -13,6 +13,13 @@
   <repository type="git">https://github.com/OpenNuvoton/M5531BSP.git</repository>
   <!-- Strongly recommended - support contact information: -->
   <supportContact></supportContact>
+   <!-- Must have - licensing information (for software BOM): -->
+  <license>LICENSE</license>
+  <licenseSets>
+    <licenseSet id="all" default="true" gating="true">
+      <license name="LICENSE" title="Apache 2.0 License"/>
+    </licenseSet>
+  </licenseSets>
  
   <!-- Must have - pack release information for versioning: -->
   <releases>
@@ -38,6 +45,7 @@
     <!-- Strongly recommended - requirement to DFP (or other packs): -->
     <packages>
       <package vendor="Nuvoton" name="NuMicroM55_DFP" version="1.0.2"/>
+      <package vendor="ARM" name="CMSIS" version="6.1.0"/>
     </packages>
   </requirements>
 
@@ -60,7 +68,7 @@
       <feature type="Button"    n="2"                name="User Button"/>
       <feature type="USB"       n="2"                name="USB OTG Host/Device Connector"/>
       <!-- Strongly recommended - on-board debug probe information (if applicable): -->
-      <debugInterface adapter="Nu-Link" debugLink="swd" connector="USB-C"/>
+      <debugInterface adapter="Nu-Link" connector="USB-C"/>
     </board>
   </boards>
   
@@ -82,6 +90,48 @@
 
     <condition id="Toolchain IAR">
       <accept Tcompiler="IAR"/> 
+    </condition>
+
+    <condition id="PowerDeliveryLib Driver UTCPD">
+      <description>PowerDeliveryLib UTCPD Driver</description>
+      <require condition="NuMicro M5531 Device"/>
+      <require Cclass="Device" Cgroup="StdDriver" Csub="UTCPD"/>
+    </condition>
+
+    <condition id="SmartcardLib Driver SC">
+      <description>SmartcardLib SC Driver</description>
+      <require condition="NuMicro M5531 Device"/>
+      <require Cclass="Device" Cgroup="StdDriver" Csub="SC"/>
+    </condition>
+
+    <condition id="UsbHostLib Driver CDC">
+      <description>UsbHostLib CDC Driver</description>
+      <require condition="NuMicro M5531 Device"/>
+      <require Cclass="Device" Cgroup="UsbHostLib" Csub="UsbHostLib_Core"/>
+    </condition>
+
+    <condition id="UsbHostLib Driver HID">
+      <description>UsbHostLib HID Driver</description>
+      <require condition="NuMicro M5531 Device"/>
+      <require Cclass="Device" Cgroup="UsbHostLib" Csub="UsbHostLib_Core"/>
+    </condition>
+
+    <condition id="UsbHostLib Driver MSC">
+      <description>UsbHostLib MSC Driver</description>
+      <require condition="NuMicro M5531 Device"/>
+      <require Cclass="Device" Cgroup="UsbHostLib" Csub="UsbHostLib_Core"/>
+    </condition>
+
+    <condition id="UsbHostLib Driver UAC">
+      <description>UsbHostLib UAC Driver</description>
+      <require condition="NuMicro M5531 Device"/>
+      <require Cclass="Device" Cgroup="UsbHostLib" Csub="UsbHostLib_Core"/>
+    </condition>
+
+    <condition id="UsbHostLib Driver UVC">
+      <description>UsbHostLib UVC Driver</description>
+      <require condition="NuMicro M5531 Device"/>
+      <require Cclass="Device" Cgroup="UsbHostLib" Csub="UsbHostLib_Core"/>
     </condition>
 
     <condition id="CMSIS Driver Common">
@@ -184,48 +234,6 @@
       <description>CMSIS USBH Driver</description>
       <require condition="NuMicro M5531 Device"/>
       <require Cclass="CMSIS Driver" Cgroup="Common"/>
-    </condition>
-
-    <condition id="PowerDeliveryLib Driver UTCPD">
-      <description>PowerDeliveryLib UTCPD Driver</description>
-      <require condition="NuMicro M5531 Device"/>
-      <require Cclass="Device" Cgroup="StdDriver" Csub="UTCPD"/>
-    </condition>
-
-    <condition id="SmartcardLib Driver SC">
-      <description>SmartcardLib SC Driver</description>
-      <require condition="NuMicro M5531 Device"/>
-      <require Cclass="Device" Cgroup="StdDriver" Csub="SC"/>
-    </condition>
-
-    <condition id="UsbHostLib Driver CDC">
-      <description>UsbHostLib CDC Driver</description>
-      <require condition="NuMicro M5531 Device"/>
-      <require Cclass="Device" Cgroup="UsbHostLib" Csub="UsbHostLib_Core"/>
-    </condition>
-
-    <condition id="UsbHostLib Driver HID">
-      <description>UsbHostLib HID Driver</description>
-      <require condition="NuMicro M5531 Device"/>
-      <require Cclass="Device" Cgroup="UsbHostLib" Csub="UsbHostLib_Core"/>
-    </condition>
-
-    <condition id="UsbHostLib Driver MSC">
-      <description>UsbHostLib MSC Driver</description>
-      <require condition="NuMicro M5531 Device"/>
-      <require Cclass="Device" Cgroup="UsbHostLib" Csub="UsbHostLib_Core"/>
-    </condition>
-
-    <condition id="UsbHostLib Driver UAC">
-      <description>UsbHostLib UAC Driver</description>
-      <require condition="NuMicro M5531 Device"/>
-      <require Cclass="Device" Cgroup="UsbHostLib" Csub="UsbHostLib_Core"/>
-    </condition>
-
-    <condition id="UsbHostLib Driver UVC">
-      <description>UsbHostLib UVC Driver</description>
-      <require condition="NuMicro M5531 Device"/>
-      <require Cclass="Device" Cgroup="UsbHostLib" Csub="UsbHostLib_Core"/>
     </condition>
 
   </conditions>
@@ -366,13 +374,13 @@
       <files>
       <file category="header"  name="Library/CMSIS/Driver/Include/Driver_USB.h"/>
       <file category="header"  name="Library/CMSIS/Driver/Include/Driver_USBH.h"/>
-      <file category="header"  name="Library/CMSIS/Driver/Source/Driver_USBH/Driver_USBH_EHCI/Include/Driver_USBH_EHCI_Config.h" attr="config" version="3.01.002"/>
+      <file category="header"  name="Library/CMSIS/Driver/Source/Driver_USBH/Driver_USBH_EHCI/Include/Driver_USBH_EHCI_Config.h"/>
       <file category="header"  name="Library/CMSIS/Driver/Source/Driver_USBH/Driver_USBH_EHCI/Include/Driver_USBH_EHCI_HW.h"/>
       <file category="header"  name="Library/CMSIS/Driver/Source/Driver_USBH/Driver_USBH_EHCI/Include/Driver_USBH_EHCI_Regs.h"/>
       <file category="header"  name="Library/CMSIS/Driver/Source/Driver_USBH/Driver_USBH_EHCI/Include/Driver_USBH_EHCI.h"/>
       <file category="sourceC"  name="Library/CMSIS/Driver/Source/Driver_USBH/Driver_USBH_EHCI/Source/Driver_USBH_EHCI_HW.c"/>
       <file category="sourceC"  name="Library/CMSIS/Driver/Source/Driver_USBH/Driver_USBH_EHCI/Source/Driver_USBH_EHCI.c"/>
-      <file category="header"  name="Library/CMSIS/Driver/Source/Driver_USBH/Driver_USBH_OHCI/Include/Driver_USBH_OHCI_Config.h" attr="config" version="3.01.002"/>
+      <file category="header"  name="Library/CMSIS/Driver/Source/Driver_USBH/Driver_USBH_OHCI/Include/Driver_USBH_OHCI_Config.h"/>
       <file category="header"  name="Library/CMSIS/Driver/Source/Driver_USBH/Driver_USBH_OHCI/Include/Driver_USBH_OHCI_HW.h"/>
       <file category="header"  name="Library/CMSIS/Driver/Source/Driver_USBH/Driver_USBH_OHCI/Include/Driver_USBH_OHCI_Regs.h"/>
       <file category="header"  name="Library/CMSIS/Driver/Source/Driver_USBH/Driver_USBH_OHCI/Include/Driver_USBH_OHCI.h"/>
@@ -1007,4 +1015,16 @@
     </component>
 
   </components>
+
+  <!-- Strongly recommended - examples section: -->
+  <examples>
+    <example name="Template" doc="readme.txt" folder="SampleCode/Template/Project" version="3.01.002">
+      <description>Template sample code</description>
+      <board name="NuMaker-M5531" vendor="Nuvoton"/>
+      <project>
+        <environment name="uv" folder="KEIL" load="Project.uvprojx"/>
+      </project>
+    </example>
+  </examples>
+
 </package>
