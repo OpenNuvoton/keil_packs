@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.7.44" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Open-CMSIS-Pack/Open-CMSIS-Pack-Spec/v1.7.44/schema/PACK.xsd">
+  <!-- Must have - software pack vendor name: -->
+  <vendor>Nuvoton</vendor>
+  <!-- Must have - software pack name: -->
+  <name>NuMicro_M251_BSP</name>
+  <!-- Strongly recommended - pack description with Overview.md file: -->
+  <description overview="README.md">Board Support Pack for M251/M252/M254/M256/M258 series</description>
+  <!-- Optional - pack download URL (if publicly available): -->
+  <url>https://github.com/OpenNuvoton/keil_packs/raw/master/m251_bsp/</url>
+  <!-- Optional - Git repo URL (if applicable): -->
+  <repository type="git">https://github.com/OpenNuvoton/M251BSP.git</repository>
+  <!-- Strongly recommended - support contact information: -->
+  <supportContact></supportContact>
+   <!-- Must have - licensing information (for software BOM): -->
+  <license>LICENSE</license>
+  <licenseSets>
+    <licenseSet id="all" default="true" gating="true">
+      <license name="LICENSE" title="Apache 2.0 License"/>
+    </licenseSet>
+  </licenseSets>
+ 
+  <!-- Must have - pack release information for versioning: -->
+  <releases>
+    <release version="3.02.008" date="2025-10-08">
+      - Updated standard driver: I2C, PDMA, SPI.
+      - New sample code: EADC_AverageCMP, QSPI_PDMA_Master, QSPI_PDMA_Slave.
+      - All VS Code projects upgraded to use GCC 14.3.1.
+      - Updated sample code: BPWM_DoubleBuffer, ISP_I2C, ISP_SPI, PWM_DeadTime, PWM_DoubleBuffer, TIMER_PWM_ChangeDuty, USBD_HID_RemoteWakeup.
+      - Updated tool: TouchView and TouchView_MP replaced NuSenadj and NuSenadj_MP.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- Optional - keywords for indexing: -->
+    <keyword>Nuvoton</keyword>
+    <keyword>Board Support Pack</keyword>
+    <keyword>NuMicro_M251</keyword>
+    <keyword>M251/M252/M254/M256/M258 BSP</keyword>
+    <keyword>M252KG6AE</keyword>
+    <keyword>M256SD2AE</keyword>
+    <keyword>M258KE3AE</keyword>
+    <keyword>M258KG6AE</keyword>
+    <keyword>NuMaker-M252KG</keyword>
+    <keyword>NuMaker-M256SD</keyword>
+    <keyword>NuMaker-M258KE</keyword>
+    <keyword>NuMaker-M258KG</keyword>
+  </keywords>
+
+  <requirements>
+    <!-- Strongly recommended - requirement to DFP (or other packs): -->
+    <packages>
+      <package vendor="Nuvoton" name="NuMicroM23_DFP" version="1.0.1"/>
+    </packages>
+  </requirements>
+
+  <!-- Must have - boards section: -->
+  <boards>
+    <!-- Must have - board information: -->
+    <board vendor="Nuvoton" name="NuMaker-M252KG" revision="V1.0" salesContact="sales@nuvoton.com" orderForm="https://direct.nuvoton.com/en/numaker-m252kg">
+      <!-- Strongly recommended - board description: -->
+      <description>NuMaker-M252KG Board</description>
+      <!-- Must have - on-board device information: -->
+      <mountedDevice    deviceIndex="0" Dvendor="Nuvoton:18" Dname="M252KG6AE"/>
+      <!-- Strongly recommended - on-board device compatibility information: -->
+      <compatibleDevice deviceIndex="0" Dvendor="Nuvoton:18" Dname="M251*"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Nuvoton:18" Dname="M252*"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Nuvoton:18" Dname="M254*"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Nuvoton:18" Dname="M256*"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Nuvoton:18" Dname="M258*"/>
+      <!-- Strongly recommended - board features: -->
+      <feature type="ODbg"      n="1"                name="On-board Nu-Link2-Me"/>
+      <feature type="PWR"       n="5"                name="USB Powered"/>
+      <feature type="PWR"       n="3.3" m="5"        name="POWER Connector for external supply"/>
+      <feature type="DIO"       n="128"              name="4 extended connectors to all chip pins"/>
+      <feature type="LED"       n="1"                name="User LED"/>
+      <feature type="Button"    n="1"                name="User Button"/>
+      <feature type="USB"       n="1"                name="USB FS Connector"/>
+      <!-- Strongly recommended - on-board debug probe information (if applicable): -->
+      <debugInterface adapter="Nu-Link" connector="Mini-USB"/>
+    </board>
+  </boards>
+  
+  <!-- Must have - conditions section: -->
+  <conditions>
+    <!-- Must have - condition related to the device family: -->
+    <condition id="NuMicro M251/M252/M254/M256/M258 Device">
+      <description>NuMicro M251/M252/M254/M256/M258 Devcies</description>
+      <require Dvendor="Nuvoton:18" Dfamily="NuMicro M23 Family" DsubFamily="M251" Dname="M251*"/>
+      <require Dvendor="Nuvoton:18" Dfamily="NuMicro M23 Family" DsubFamily="M251" Dname="M252*"/>
+      <require Dvendor="Nuvoton:18" Dfamily="NuMicro M23 Family" DsubFamily="M251" Dname="M254*"/>
+      <require Dvendor="Nuvoton:18" Dfamily="NuMicro M23 Family" DsubFamily="M251" Dname="M256*"/>
+      <require Dvendor="Nuvoton:18" Dfamily="NuMicro M23 Family" DsubFamily="M251" Dname="M258*"/>
+    </condition>
+
+    <condition id="NuMicro M251/M252 Device">
+      <description>NuMicro M251/M252 Devcies</description>
+      <require Dvendor="Nuvoton:18" Dfamily="NuMicro M23 Family" DsubFamily="M251" Dname="M251*"/>
+      <require Dvendor="Nuvoton:18" Dfamily="NuMicro M23 Family" DsubFamily="M251" Dname="M252*"/>
+    </condition>
+
+    <condition id="NuMicro M254/M256/M258 Device">
+      <description>NuMicro M254/M256/M258 Devices</description>
+      <require Dvendor="Nuvoton:18" Dfamily="NuMicro M23 Family" DsubFamily="M251" Dname="M254*"/>
+      <require Dvendor="Nuvoton:18" Dfamily="NuMicro M23 Family" DsubFamily="M251" Dname="M256*"/>
+      <require Dvendor="Nuvoton:18" Dfamily="NuMicro M23 Family" DsubFamily="M251" Dname="M258*"/>
+    </condition>
+
+    <condition id="NuMicro M256/M258 Device">
+      <description>NuMicro M256/M258 Devices</description>
+      <require Dvendor="Nuvoton:18" Dfamily="NuMicro M23 Family" DsubFamily="M251" Dname="M256*"/>
+      <require Dvendor="Nuvoton:18" Dfamily="NuMicro M23 Family" DsubFamily="M251" Dname="M258*"/>
+    </condition>
+
+    <condition id="NuMicro M252/M258 Device">
+      <description>NuMicro M252/M258 Devices</description>
+      <require Dvendor="Nuvoton:18" Dfamily="NuMicro M23 Family" DsubFamily="M251" Dname="M252*"/>
+      <require Dvendor="Nuvoton:18" Dfamily="NuMicro M23 Family" DsubFamily="M251" Dname="M258*"/>
+    </condition>
+
+    <condition id="NuMicro M258G Device">
+      <description>NuMicro M258G Devices</description>
+      <require Dvendor="Nuvoton:18" Dfamily="NuMicro M23 Family" DsubFamily="M251" Dname="M258KG*"/>
+      <require Dvendor="Nuvoton:18" Dfamily="NuMicro M23 Family" DsubFamily="M251" Dname="M258SG*"/>
+    </condition>
+
+    <condition id="Toolchain ARMCC">
+      <accept Tcompiler="ARMCC"/> 
+    </condition>
+
+    <condition id="Toolchain GCC">
+      <accept Tcompiler="GCC"/> 
+    </condition>
+
+    <condition id="Toolchain IAR">
+      <accept Tcompiler="IAR"/> 
+    </condition>
+
+    <condition id="LCDLib Driver LCD">
+      <description>LCDLib LCD Driver</description>
+      <require condition="NuMicro M254/M256/M258 Device"/>
+      <require Cclass="Device" Cgroup="StdDriver" Csub="LCD"/>
+    </condition>
+
+    <condition id="SmartcardLib Driver SC">
+      <description>SmartcardLib SC Driver</description>
+      <require condition="NuMicro M251/M252/M254/M256/M258 Device"/>
+      <require Cclass="Device" Cgroup="StdDriver" Csub="SC"/>
+    </condition>
+
+    <condition id="TKLib Driver TK">
+      <description>TKLib TK Driver</description>
+      <require condition="NuMicro M256/M258 Device"/>
+      <require Cclass="Device" Cgroup="StdDriver" Csub="TK"/>
+    </condition>
+
+  </conditions>
+
+  <!-- Strongly recommended - components section: -->
+  <components>
+
+    <!-- StdDriver components section: -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="3.02.008" condition="NuMicro M251/M252/M254/M256/M258 Device">
+      <!-- Cversion is necessary -->
+      <description>System Startup for Nuvoton M251/M252/M254/M256/M258 series</description>
+      <files>
+        <!-- header path -->
+        <file category="include" name="Library/StdDriver/inc/"/>
+        <file category="include" name="Library/Device/Nuvoton/M251/Include/"/>
+        <file category="header"  name="Library/Device/Nuvoton/M251/Include/M251.h"/>
+        <!-- startup/system files -->
+        <file category="source"  name="Library/Device/Nuvoton/M251/Source/system_M251.c" attr="config" version="3.02.008"/>
+        <file category="source"  name="Library/Device/Nuvoton/M251/Source/ARM/startup_M251.c" attr="config" version="3.02.008" condition="Toolchain ARMCC"/>
+        <file category="source"  name="Library/Device/Nuvoton/M251/Source/GCC/startup_M251.S" attr="config" version="3.02.008" condition="Toolchain GCC"/>
+        <file category="source"  name="Library/Device/Nuvoton/M251/Source/IAR/startup_M251.s" attr="config" version="3.02.008" condition="Toolchain IAR"/>
+        <file category="linkerScript" name="Library/Device/Nuvoton/M251/Source/ARM/APROM.sct" attr="config" version="3.02.008" condition="Toolchain ARMCC"/>
+        <file category="linkerScript" name="Library/Device/Nuvoton/M251/Source/GCC/gcc_arm.ld" attr="config" version="3.02.008" condition="Toolchain GCC"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdDriver" Csub="Retarget" Cversion="3.02.008" condition="NuMicro M251/M252/M254/M256/M258 Device">
+    <description>Debug Port and Semihost Setting driver for Nuvoton M251/M252/M254/M256/M258 series</description>
+      <files>
+      <file category="sourceC" name="Library/StdDriver/src/retarget.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdDriver" Csub="ACMP" Cversion="3.02.008" condition="NuMicro M251/M252/M254/M256/M258 Device">
+    <description>ACMP driver for Nuvoton M251/M252/M254/M256/M258 series</description>
+      <files>
+      <file category="header"  name="Library/StdDriver/inc/acmp.h"/>
+      <file category="sourceC" name="Library/StdDriver/src/acmp.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdDriver" Csub="BPWM" Cversion="3.02.008" condition="NuMicro M251/M252/M254/M256/M258 Device">
+    <description>BPWM driver for Nuvoton M251/M252/M254/M256/M258 series</description>
+      <files>
+      <file category="header"  name="Library/StdDriver/inc/bpwm.h"/>
+      <file category="sourceC" name="Library/StdDriver/src/bpwm.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdDriver" Csub="CLK" Cversion="3.02.008" condition="NuMicro M251/M252/M254/M256/M258 Device">
+    <description>CLK driver for Nuvoton M251/M252/M254/M256/M258 series</description>
+      <files>
+      <file category="header"  name="Library/StdDriver/inc/clk.h"/>
+      <file category="sourceC" name="Library/StdDriver/src/clk.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdDriver" Csub="CRC" Cversion="3.02.008" condition="NuMicro M251/M252/M254/M256/M258 Device">
+    <description>CRC driver for Nuvoton M251/M252/M254/M256/M258 series</description>
+      <files>
+      <file category="header"  name="Library/StdDriver/inc/crc.h"/>
+      <file category="sourceC" name="Library/StdDriver/src/crc.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdDriver" Csub="CRYPTO" Cversion="3.02.008" condition="NuMicro M258G Device">
+    <description>CRYPTO driver for Nuvoton M258G series</description>
+      <files>
+      <file category="header"  name="Library/StdDriver/inc/crypto.h"/>
+      <file category="sourceC" name="Library/StdDriver/src/crypto.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdDriver" Csub="DAC" Cversion="3.02.008" condition="NuMicro M258G Device">
+    <description>DAC driver for Nuvoton M258G series</description>
+      <files>
+      <file category="header"  name="Library/StdDriver/inc/dac.h"/>
+      <file category="sourceC" name="Library/StdDriver/src/dac.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdDriver" Csub="EADC" Cversion="3.02.008" condition="NuMicro M251/M252/M254/M256/M258 Device">
+    <description>EADC driver for Nuvoton M251/M252/M254/M256/M258 series</description>
+      <files>
+      <file category="header"  name="Library/StdDriver/inc/eadc.h"/>
+      <file category="sourceC" name="Library/StdDriver/src/eadc.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdDriver" Csub="EBI" Cversion="3.02.008" condition="NuMicro M251/M252 Device">
+    <description>EBI driver for Nuvoton M251/M252 series</description>
+      <files>
+      <file category="header"  name="Library/StdDriver/inc/ebi.h"/>
+      <file category="sourceC" name="Library/StdDriver/src/ebi.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdDriver" Csub="FMC" Cversion="3.02.008" condition="NuMicro M251/M252/M254/M256/M258 Device">
+    <description>FMC driver for Nuvoton M251/M252/M254/M256/M258 series</description>
+      <files>
+      <file category="header"  name="Library/StdDriver/inc/fmc.h"/>
+      <file category="sourceC" name="Library/StdDriver/src/fmc.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdDriver" Csub="GPIO" Cversion="3.02.008" condition="NuMicro M251/M252/M254/M256/M258 Device">
+    <description>GPIO driver for Nuvoton M251/M252/M254/M256/M258 series</description>
+      <files>
+      <file category="header"  name="Library/StdDriver/inc/gpio.h"/>
+      <file category="sourceC" name="Library/StdDriver/src/gpio.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdDriver" Csub="I2C" Cversion="3.02.008" condition="NuMicro M251/M252/M254/M256/M258 Device">
+    <description>I2C driver for Nuvoton M251/M252/M254/M256/M258 series</description>
+      <files>
+      <file category="header"  name="Library/StdDriver/inc/i2c.h"/>
+      <file category="sourceC" name="Library/StdDriver/src/i2c.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdDriver" Csub="LCD" Cversion="3.02.008" condition="NuMicro M254/M256/M258 Device">
+    <description>LCD driver for Nuvoton M254/M256/M258 series</description>
+      <files>
+      <file category="header"  name="Library/StdDriver/inc/lcd.h"/>
+      <file category="sourceC" name="Library/StdDriver/src/lcd.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdDriver" Csub="OPA" Cversion="3.02.008" condition="NuMicro M251/M252 Device">
+    <description>OPA driver for Nuvoton M251/M252 series</description>
+      <files>
+      <file category="header"  name="Library/StdDriver/inc/opa.h"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdDriver" Csub="PDMA" Cversion="3.02.008" condition="NuMicro M251/M252/M254/M256/M258 Device">
+    <description>PDMA driver for Nuvoton M251/M252/M254/M256/M258 series</description>
+      <files>
+      <file category="header"  name="Library/StdDriver/inc/pdma.h"/>
+      <file category="sourceC" name="Library/StdDriver/src/pdma.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdDriver" Csub="PSIO" Cversion="3.02.008" condition="NuMicro M251/M252 Device">
+    <description>PSIO driver for Nuvoton M251/M252 series</description>
+      <files>
+      <file category="header"  name="Library/StdDriver/inc/psio.h"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdDriver" Csub="PWM" Cversion="3.02.008" condition="NuMicro M251/M252 Device">
+    <description>PWM driver for Nuvoton M251/M252 series</description>
+      <files>
+      <file category="header"  name="Library/StdDriver/inc/pwm.h"/>
+      <file category="sourceC" name="Library/StdDriver/src/pwm.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdDriver" Csub="QSPI" Cversion="3.02.008" condition="NuMicro M251/M252 Device">
+    <description>QSPI driver for Nuvoton M251/M252 series</description>
+      <files>
+      <file category="header"  name="Library/StdDriver/inc/qspi.h"/>
+      <file category="sourceC" name="Library/StdDriver/src/qspi.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdDriver" Csub="RTC" Cversion="3.02.008" condition="NuMicro M251/M252/M254/M256/M258 Device">
+    <description>RTC driver for Nuvoton M251/M252/M254/M256/M258 series</description>
+      <files>
+      <file category="header"  name="Library/StdDriver/inc/rtc.h"/>
+      <file category="sourceC" name="Library/StdDriver/src/rtc.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdDriver" Csub="SC" Cversion="3.02.008" condition="NuMicro M251/M252/M254/M256/M258 Device">
+    <description>SC driver for Nuvoton M251/M252/M254/M256/M258 series</description>
+      <files>
+      <file category="header"  name="Library/StdDriver/inc/sc.h"/>
+      <file category="sourceC" name="Library/StdDriver/src/sc.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdDriver" Csub="SCUART" Cversion="3.02.008" condition="NuMicro M251/M252/M254/M256/M258 Device">
+    <description>SCUART driver for Nuvoton M251/M252/M254/M256/M258 series</description>
+      <files>
+      <file category="header"  name="Library/StdDriver/inc/scuart.h"/>
+      <file category="sourceC" name="Library/StdDriver/src/scuart.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdDriver" Csub="SPI" Cversion="3.02.008" condition="NuMicro M251/M252/M254/M256/M258 Device">
+    <description>SPI driver for Nuvoton M251/M252/M254/M256/M258 series</description>
+      <files>
+      <file category="header"  name="Library/StdDriver/inc/spi.h"/>
+      <file category="sourceC" name="Library/StdDriver/src/spi.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdDriver" Csub="SYS" Cversion="3.02.008" condition="NuMicro M251/M252/M254/M256/M258 Device">
+    <description>SYS driver for Nuvoton M251/M252/M254/M256/M258 series</description>
+      <files>
+      <file category="header"  name="Library/StdDriver/inc/sys.h"/>
+      <file category="sourceC" name="Library/StdDriver/src/sys.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdDriver" Csub="TIMER" Cversion="3.02.008" condition="NuMicro M251/M252/M254/M256/M258 Device">
+    <description>TIMER driver for Nuvoton M251/M252/M254/M256/M258 series</description>
+      <files>
+      <file category="header"  name="Library/StdDriver/inc/timer.h"/>
+      <file category="sourceC" name="Library/StdDriver/src/timer.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdDriver" Csub="TIMER_PWM" Cversion="3.02.008" condition="NuMicro M251/M252/M254/M256/M258 Device">
+    <description>TIMER_PWM driver for Nuvoton M251/M252/M254/M256/M258 series</description>
+      <files>
+      <file category="header"  name="Library/StdDriver/inc/timer_pwm.h"/>
+      <file category="sourceC" name="Library/StdDriver/src/timer_pwm.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdDriver" Csub="TK" Cversion="3.02.008" condition="NuMicro M256/M258 Device">
+    <description>TK driver for Nuvoton M256/M258 series</description>
+      <files>
+      <file category="header"  name="Library/StdDriver/inc/tk.h"/>
+      <file category="sourceC" name="Library/StdDriver/src/tk.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdDriver" Csub="UART" Cversion="3.02.008" condition="NuMicro M251/M252/M254/M256/M258 Device">
+    <description>UART driver for Nuvoton M251/M252/M254/M256/M258 series</description>
+      <files>
+      <file category="header"  name="Library/StdDriver/inc/uart.h"/>
+      <file category="sourceC" name="Library/StdDriver/src/uart.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdDriver" Csub="USBD" Cversion="3.02.008" condition="NuMicro M252/M258 Device">
+    <description>USBD driver for Nuvoton M252/M258 series</description>
+      <files>
+      <file category="header"  name="Library/StdDriver/inc/usbd.h"/>
+      <file category="sourceC" name="Library/StdDriver/src/usbd.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdDriver" Csub="USCI_I2C" Cversion="3.02.008" condition="NuMicro M251/M252/M254/M256/M258 Device">
+    <description>USCI_I2C driver for Nuvoton M251/M252/M254/M256/M258 series</description>
+      <files>
+      <file category="header"  name="Library/StdDriver/inc/usci_i2c.h"/>
+      <file category="sourceC" name="Library/StdDriver/src/usci_i2c.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdDriver" Csub="USCI_SPI" Cversion="3.02.008" condition="NuMicro M251/M252/M254/M256/M258 Device">
+    <description>USCI_SPI driver for Nuvoton M251/M252/M254/M256/M258 series</description>
+      <files>
+      <file category="header"  name="Library/StdDriver/inc/usci_spi.h"/>
+      <file category="sourceC" name="Library/StdDriver/src/usci_spi.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdDriver" Csub="USCI_UART" Cversion="3.02.008" condition="NuMicro M251/M252/M254/M256/M258 Device">
+    <description>USCI_UART driver for Nuvoton M251/M252/M254/M256/M258 series</description>
+      <files>
+      <file category="header"  name="Library/StdDriver/inc/usci_uart.h"/>
+      <file category="sourceC" name="Library/StdDriver/src/usci_uart.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdDriver" Csub="WDT" Cversion="3.02.008" condition="NuMicro M251/M252/M254/M256/M258 Device">
+    <description>WDT driver for Nuvoton M251/M252/M254/M256/M258 series</description>
+      <files>
+      <file category="header"  name="Library/StdDriver/inc/wdt.h"/>
+      <file category="sourceC" name="Library/StdDriver/src/wdt.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="StdDriver" Csub="WWDT" Cversion="3.02.008" condition="NuMicro M251/M252/M254/M256/M258 Device">
+    <description>WWDT driver for Nuvoton M251/M252/M254/M256/M258 series</description>
+      <files>
+      <file category="header"  name="Library/StdDriver/inc/wwdt.h"/>
+      <file category="sourceC" name="Library/StdDriver/src/wwdt.c"/>
+      </files>
+    </component>
+
+    <!-- LCDLib components section: -->
+    <component Cclass="Device" Cgroup="LCDLib" Cversion="3.02.008" condition="LCDLib Driver LCD">
+    <description>LCD library for Nuvoton M254/M256/M258 series</description>
+      <files>
+      <file category="header"  name="Library/LCDLib/Include/lcdlib.h"/>
+      <file category="header"  name="Library/LCDLib/Include/lcdzone.h"/>
+      <file category="header"  name="Library/LCDLib/Include/lcdzone_M256D.h"/>
+      <file category="sourceC" name="Library/LCDLib/Source/lcdlib.c"/>
+      </files>
+    </component>
+
+    <!-- SmartcardLib components section: -->
+    <component Cclass="Device" Cgroup="SmartcardLib" Cversion="3.02.008" condition="SmartcardLib Driver SC">
+    <description>Smartcard library for Nuvoton M251/M252/M254/M256/M258 series</description>
+      <files>
+      <file category="header"  name="Library/SmartcardLib/Include/sclib.h"/>
+	    <file category="library" name="Library/SmartcardLib/libsmartcard.a" condition="Toolchain GCC"/>
+	    <file category="library" name="Library/SmartcardLib/SmartCardLib.a" condition="Toolchain IAR"/>
+	    <file category="library" name="Library/SmartcardLib/SmartcardLib.lib" condition="Toolchain ARMCC"/>
+      </files>
+    </component>
+
+    <!-- TKLib components section: -->
+    <component Cclass="Device" Cgroup="TKLib" Cversion="3.02.008" condition="TKLib Driver TK">
+    <description>Touck key library for Nuvoton M256/M258 series</description>
+      <files>
+      <file category="header"  name="Library/TKLib/Include/tklib.h"/>
+	    <file category="library" name="Library/TKLib/libTKLib_Calibration.a" condition="Toolchain GCC"/>
+	    <file category="library" name="Library/TKLib/libTKLib_FreeRun.a" condition="Toolchain GCC"/>
+	    <file category="library" name="Library/TKLib/libTKLib_MassProduction.a" condition="Toolchain GCC"/>
+	    <file category="library" name="Library/TKLib/TKLib_Calibration.a" condition="Toolchain IAR"/>
+	    <file category="library" name="Library/TKLib/TKLib_Calibration.lib" condition="Toolchain ARMCC"/>
+	    <file category="library" name="Library/TKLib/TKLib_FreeRun.a" condition="Toolchain IAR"/>
+	    <file category="library" name="Library/TKLib/TKLib_FreeRun.lib" condition="Toolchain ARMCC"/>
+	    <file category="library" name="Library/TKLib/TKLib_MassProduction.a" condition="Toolchain IAR"/>
+	    <file category="library" name="Library/TKLib/TKLib_MassProduction.lib" condition="Toolchain ARMCC"/>
+      </files>
+    </component>
+
+  </components>
+
+  <!-- Strongly recommended - examples section: -->
+  <examples>
+    <example name="Template" doc="readme.txt" folder="SampleCode/Template" version="3.02.008">
+      <description>Template sample code</description>
+      <board name="NuMaker-M252KG" vendor="Nuvoton"/>
+      <project>
+        <environment name="uv" load="Keil/Template.uvprojx"/>
+      </project>
+    </example>
+  </examples>
+
+</package>
