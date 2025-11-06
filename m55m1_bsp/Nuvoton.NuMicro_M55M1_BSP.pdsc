@@ -6,7 +6,7 @@
   <!-- Must have - software pack vendor name: -->
   <vendor>Nuvoton</vendor>
   <!-- Strongly recommended - pack description with Overview.md file: -->
-  <description overview="Documents/OVERVIEW.md">Board Support Pack for M55M1 Series</description>
+  <description overview="README.md">Board Support Pack for M55M1 Series</description>
   <!-- Optional - pack download URL (if publicly available): -->
   <url>https://github.com/OpenNuvoton/keil_packs/raw/master/m55m1_bsp/</url>
   <!-- Optional - Git repo URL (if applicable): -->
@@ -56,15 +56,16 @@
   <boards>
     <!-- Must have - board information: -->
     <board vendor="Nuvoton" name="NuMaker-X-M55M1D" revision="V1.0"
-           salesContact="https://direct.nuvoton.com/en/contact-us" orderForm="https://direct.nuvoton.com/en/numaker-x-m55m1d">
+           salesContact="https://direct.nuvoton.com/en/contact-us"
+           orderForm="https://direct.nuvoton.com/en/numaker-x-m55m1d">
       <!-- Strongly recommended - board description: -->
       <description>NuMaker-X-M55M1 Development Board with M55M1H2LJAE MCU</description>
       <image small="Images/numaker-x-m55m1d_small.png"
              large="Images/numaker-x-m55m1d_large.png"/>
       <book category="overview"  name="https://direct.nuvoton.com/en/numaker-x-m55m1d" title="NuMaker-X-M55M1D"/>
-      <book category="schematic" name="https://www.nuvoton.com/resource-download.jsp?tp_GUID=HL102025092207032917&amp;currentFolder=/products/microcontrollers/arm-cortex-m55-mcus/m55m1-series/" title="Schematic"/>
-      <book category="manual"    name="https://www.nuvoton.com/resource-download.jsp?tp_GUID=UG132025091911464523&amp;currentFolder=/products/microcontrollers/arm-cortex-m55-mcus/m55m1-series/" title="User Manual"/>
-      <book category="other"     name="README.md" title="Guide"/>
+      <book category="schematic" name="https://www.nuvoton.com/resource-download.jsp?tp_GUID=HL102025092207032917" title="Schematic"/>
+      <book category="manual"    name="https://www.nuvoton.com/resource-download.jsp?tp_GUID=UG132025091911464523" title="User Manual"/>
+      <book category="other"     name="Documents/OVERVIEW.md" title="Guide"/>
       <!-- Must have - on-board device information: -->
       <mountedDevice    deviceIndex="0" Dvendor="Nuvoton:18" Dname="M55M1H2LJAE"/>
       <!-- Strongly recommended - on-board device compatibility information: -->
@@ -72,17 +73,17 @@
       <!-- Strongly recommended - board features: -->
       <feature type="ODbg"          n="1"         name="On-board Nu-Link2-Me"/>
       <feature type="PWR"           n="5"         name="USB Powered"/>
-      <feature type="PWR"           n="3.3" m="5" name="POWER Connector for external supply"/>
+      <feature type="PWR"           n="3.3" m="5" name="External Supply"/>
       <feature type="LED"           n="3"         name="User LEDs"/>
       <feature type="Button"        n="2"         name="User Buttons"/>
-      <feature type="DIO"           n="176"       name="4 extended connectors to all chip pins"/>
+      <feature type="DIO"           n="4"         name="Extended connectors to all chip pins"/>
       <feature type="USB"           n="1"         name="High-Speed USB OTG with USB-C Connector"/>
       <feature type="USB"           n="1"         name="Full-Speed USB OTG with USB-C Connector"/>
-      <feature type="RAM"           n="1"         name="64 MB HyperRAM"/>
+      <feature type="RAM"           n="1"         name="64 Mb HyperRAM"/>
       <feature type="ConnOther"     n="1"         name="ESP-12F Wi-Fi® module from Espressif"/>
       <feature type="MIC"           n="1"         name="MEMS Digital microphones"/>
-      <feature type="Accelerometer" n="1"         name="Accelerometer(MPU6500)"/>
-      <feature type="Gyro"          n="1"         name="Gyroscope(MPU6500)"/>
+      <feature type="Accelerometer" n="1"         name="Accelerometer (MPU6500)"/>
+      <feature type="Gyro"          n="1"         name="Gyroscope (MPU6500)"/>
       <feature type="ETH"           n="1"         name="10/100 Ethernet Port"/>
       <feature type="CAN"           n="1"         name="CAN FD Transceiver"/>
       <feature type="MemCard"       n="1"         name="SDIO interface microSD card"/>
