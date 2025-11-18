@@ -23,15 +23,15 @@
  
   <!-- Must have - pack release information for versioning: -->
   <releases>
-    <release version="3.1.3" date="2025-11-04">
+    <release version="3.1.3" date="2025-11-18">
       Moved standard drivers, CMSIS drivers, and libraries to DFP pack.
       Added Blink example.
     </release>
     <release version="3.1.2" date="2025-08-08">
-      - Supported M5531B.
-      - Added CMSIS drivers, new sample codes.
-      - Updated startup, standard drivers, libraries, sample codes.
-      - Removed RTC_TimeAndTick sample code.
+      Supported M5531B.
+      Added CMSIS drivers, new sample codes.
+      Updated startup, standard drivers, libraries, sample codes.
+      Removed RTC_TimeAndTick sample code.
     </release>
   </releases>
 
@@ -84,7 +84,24 @@
       <debugProbe connector="USB-C" debugClock="10000000" debugLink="swd" name="CMSIS-DAP"/>
     </board>
   </boards>
-  
+
+  <conditions>
+    <condition id="CMSIS Driver M5531 VIO">
+      <description>CMSIS VIO M5531 Driver</description>
+      <require Dfamily="NuMicro M55 Family" Dvendor="Nuvoton:18"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <component Cclass="CMSIS Driver" Cgroup="VIO" Csub="Board" Cvariant="NuMaker-M5531" Cversion="1.0.0" condition="CMSIS Driver M5531 VIO">
+      <description>CMSIS VIO driver for NuMaker-M5531</description>
+      <files>
+      <file category="header"  name="Library/CMSIS/Driver/VIO/Include/cmsis_vio.h"/>
+      <file category="sourceC" name="Library/CMSIS/Driver/VIO/Source/vio_NuMaker-M5531.c"/>
+      </files>
+    </component>
+  </components>
+
   <examples>
     <example name="Blinky" folder="Examples/Blinky" doc="README.md">
       <description>Blinky example with VIO</description>
