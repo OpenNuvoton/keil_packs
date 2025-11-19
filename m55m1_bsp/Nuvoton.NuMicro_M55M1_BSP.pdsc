@@ -52,6 +52,25 @@
     </packages>
   </requirements>
 
+  <!-- Must have - conditions section: -->
+  <conditions>
+    <condition id="CMSIS Driver M55M1 VIO">
+      <description>CMSIS VIO M55M1 Driver</description>
+      <require Dfamily="NuMicro M55 Family" Dvendor="Nuvoton:18"/>
+    </condition>
+  </conditions>
+
+  <!-- Strongly recommended - components section: -->
+  <components>
+    <component Cclass="CMSIS Driver" Cgroup="VIO" Csub="Board" Cvariant="NuMaker-X-M55M1D" Cversion="1.0.0" condition="CMSIS Driver M55M1 VIO">
+      <description>CMSIS VIO driver for NuMaker-X-M55M1D</description>
+      <files>
+      <file category="header"  name="Library/CMSIS/Driver/VIO/Include/cmsis_vio.h"/>
+      <file category="sourceC" name="Library/CMSIS/Driver/VIO/Source/vio_NuMaker-M55M1.c"/>
+      </files>
+    </component>
+  </components>
+
   <!-- Must have - boards section: -->
   <boards>
     <!-- Must have - board information: -->
@@ -98,23 +117,6 @@
       <debugProbe connector="USB-C" debugClock="10000000" debugLink="swd" name="CMSIS-DAP"/>
     </board>
   </boards>
-
-  <conditions>
-    <condition id="CMSIS Driver M55M1 VIO">
-      <description>CMSIS VIO M55M1 Driver</description>
-      <require Dfamily="NuMicro M55 Family" Dvendor="Nuvoton:18"/>
-    </condition>
-  </conditions>
-
-  <components>
-    <component Cclass="CMSIS Driver" Cgroup="VIO" Csub="Board" Cvariant="NuMaker-X-M55M1D" Cversion="1.0.0" condition="CMSIS Driver M55M1 VIO">
-      <description>CMSIS VIO driver for NuMaker-X-M55M1D</description>
-      <files>
-      <file category="header"  name="Library/CMSIS/Driver/VIO/Include/cmsis_vio.h"/>
-      <file category="sourceC" name="Library/CMSIS/Driver/VIO/Source/vio_NuMaker-M55M1.c"/>
-      </files>
-    </component>
-  </components>
 
   <examples>
     <example name="Blinky" folder="Examples/Blinky" doc="README.md">
