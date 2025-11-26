@@ -23,6 +23,9 @@
 
   <!-- Must have - pack release information for versioning: -->
   <releases>
+    <release version="3.1.4-rc.2" date="2025-11-26">
+      Removed dummy files of CMSIS VIO driver and Template example.
+    </release>
     <release version="3.1.4-rc.1" date="2025-11-21">
       Moved CMSIS VIO driver to BSP pack.
     </release>
@@ -51,7 +54,7 @@
   <requirements>
     <!-- Strongly recommended - requirement to DFP (or other packs): -->
     <packages>
-      <package vendor="Nuvoton" name="NuMicroM55_DFP" version="3.1.4-rc.1"/>
+      <package vendor="Nuvoton" name="NuMicroM55_DFP" version="3.1.4-rc.2"/>
     </packages>
   </requirements>
 
@@ -68,7 +71,6 @@
     <component Cclass="CMSIS Driver" Cgroup="VIO" Csub="Board" Cvariant="NuMaker-X-M55M1D" Cversion="1.0.0" condition="CMSIS Driver M55M1 VIO">
       <description>CMSIS VIO driver for NuMaker-X-M55M1D</description>
       <files>
-      <file category="header"  name="Library/CMSIS/Driver/VIO/Include/cmsis_vio.h"/>
       <file category="sourceC" name="Library/CMSIS/Driver/VIO/Source/vio_NuMaker-M55M1.c"/>
       </files>
     </component>
